@@ -4,8 +4,12 @@ class UrlsController < ApplicationController
   KEYS_CACHE_PREFIX = 'keys_cache'
   SEPARATOR = '.'
 
+  def index
+  end
+
   def create
     url_cache_key = "#{URLS_CACHE_PREFIX}#{SEPARATOR}#{params[:url]}"
+    print params
     key = Rails.cache.read url_cache_key
     if key.nil?
       key = (0...10).map { (65 + rand(26)).chr }.join
